@@ -1,0 +1,9 @@
+.next
+node_modules
+
+.env.development.local
+.env.local
+.env.production.local
+.env.test.local
+yarn.lock
+yarn-error.log

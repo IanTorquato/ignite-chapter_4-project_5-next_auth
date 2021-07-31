@@ -1,0 +1,11 @@
+{
+  "cSpell.words": [
+    "nextauth",
+    "respawn"
+  ],
+  "editor.rulers": [
+    126
+  ],
+  "eslint.run": "onSave",
+  "window.zoomLevel": 0
+}

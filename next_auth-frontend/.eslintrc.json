@@ -1,0 +1,102 @@
+{
+  "extends": [
+    "airbnb-base",
+    "eslint:recommended",
+    "next",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "allowImportExportEverywhere": true
+  },
+  "plugins": [
+    "eslint-plugin-import-helpers",
+    "react"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": 0,
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          "module",
+          "/^@nextauth/",
+          [
+            "parent",
+            "sibling",
+            "index"
+          ]
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "ignoreCase": true
+        }
+      }
+    ],
+    "@typescript-eslint/indent": [
+      "error",
+      2
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-shadow": [
+      "error"
+    ],
+    "class-methods-use-this": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-console": "off",
+    "no-shadow": "off",
+    "no-useless-constructor": "off",
+    "prettier/prettier": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ],
+        "map": [
+          [
+            "@nextauth/public",
+            "./public"
+          ],
+          [
+            "@nextauth/components",
+            "./src/components"
+          ],
+          [
+            "@nextauth/contexts",
+            "./src/contexts"
+          ],
+          [
+            "@nextauth/pages",
+            "./src/pages"
+          ],
+          [
+            "@nextauth/services",
+            "./src/services"
+          ],
+          [
+            "@nextauth/styles",
+            "./src/styles"
+          ]
+        ]
+      }
+    }
+  }
+}

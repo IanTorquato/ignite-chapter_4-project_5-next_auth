@@ -61,9 +61,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
       router.push('/dashboard');
     } catch (error) {
       console.error(error);
-
-      // eslint-disable-next-line no-alert
-      alert(error);
     }
   }
 

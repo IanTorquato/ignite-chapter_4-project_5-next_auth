@@ -2,10 +2,11 @@ import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken'
 import decode from 'jwt-decode'
+
 import { generateJwtAndRefreshToken } from './auth';
 import { auth } from './config';
-
 import { checkRefreshTokenIsValid, users, seedUserStore, invalidateRefreshToken } from './database';
+
 import { CreateSessionDTO, DecodedToken } from './types';
 
 const app = express();

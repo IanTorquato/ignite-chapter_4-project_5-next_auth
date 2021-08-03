@@ -94,6 +94,10 @@
           [
             "@nextauth/styles",
             "./src/styles"
+          ],
+          [
+            "@nextauth/utils",
+            "./src/utils"
           ]
         ]
       }

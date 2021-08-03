@@ -1,8 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { parseCookies, setCookie } from 'nookies';
 
-// eslint-disable-next-line import/no-cycle
-import { signOut } from '@nextauth/contexts/AuthContext';
+import { signOut } from '@nextauth/utils/signOut';
 
 let cookies = parseCookies();
 let isRefreshing = false;

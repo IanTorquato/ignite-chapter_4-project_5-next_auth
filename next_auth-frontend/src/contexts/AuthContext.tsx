@@ -1,9 +1,9 @@
 import Router from 'next/dist/client/router';
-import { destroyCookie, parseCookies, setCookie } from 'nookies';
+import { parseCookies, setCookie } from 'nookies';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
-// eslint-disable-next-line import/no-cycle
 import { api } from '@nextauth/services/api';
+import { signOut } from '@nextauth/utils/signOut';
 
 type User = {
   email: string;
@@ -27,13 +27,6 @@ type AuthContextData = {
 };
 
 export const AuthContext = createContext({} as AuthContextData);
-
-export function signOut() {
-  destroyCookie(undefined, 'nextauth.token');
-  destroyCookie(undefined, 'nextauth.refreshToken');
-
-  Router.push('/');
-}
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();

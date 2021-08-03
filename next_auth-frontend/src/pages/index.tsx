@@ -3,6 +3,7 @@ import { parseCookies } from 'nookies';
 import { FormEvent, useContext, useState } from 'react';
 
 import { AuthContext } from '@nextauth/contexts/AuthContext';
+import { withSSRGuest } from '@nextauth/utils/withSSRGuest';
 
 import styles from '../styles/home.module.css';
 
@@ -33,17 +34,6 @@ export default function Home() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const cookies = parseCookies(ctx);
-
-  if (cookies['nextauth.token']) {
-    return {
-      redirect: {
-        destination: '/dashboard',
-        permanent: false,
-      },
-    };
-  }
-
+export const getServerSideProps = withSSRGuest(async () => {
   return { props: {} };
-};
+});

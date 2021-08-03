@@ -1,7 +1,8 @@
-import { useRouter } from 'next/dist/client/router';
-import { parseCookies, setCookie } from 'nookies';
+import Router from 'next/dist/client/router';
+import { destroyCookie, parseCookies, setCookie } from 'nookies';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
+// eslint-disable-next-line import/no-cycle
 import { api } from '@nextauth/services/api';
 
 type User = {
@@ -27,9 +28,14 @@ type AuthContextData = {
 
 export const AuthContext = createContext({} as AuthContextData);
 
-export function AuthProvider({ children }: AuthProviderProps) {
-  const router = useRouter();
+export function signOut() {
+  destroyCookie(undefined, 'nextauth.token');
+  destroyCookie(undefined, 'nextauth.refreshToken');
 
+  Router.push('/');
+}
+
+export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
   const isAuthenticated = !!user;
 
@@ -37,11 +43,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const { 'nextauth.token': token } = parseCookies();
 
     if (token) {
-      api.get('/me').then((response) => {
-        const { email, permissions, roles } = response.data;
+      api
+        .get('/me')
+        .then((response) => {
+          const { email, permissions, roles } = response.data;
 
-        setUser({ email, permissions, roles });
-      });
+          setUser({ email, permissions, roles });
+        })
+        .catch(() => {
+          signOut();
+        });
     }
   }, []);
 
@@ -58,7 +69,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       api.defaults.headers.Authorization = `Bearer ${token}`;
 
-      router.push('/dashboard');
+      Router.push('/dashboard');
     } catch (error) {
       console.error(error);
     }

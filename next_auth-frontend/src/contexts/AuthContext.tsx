@@ -2,7 +2,7 @@ import Router from 'next/dist/client/router';
 import { parseCookies, setCookie } from 'nookies';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
-import { api } from '@nextauth/services/api';
+import { api } from '@nextauth/services/apiClient';
 import { signOut } from '@nextauth/utils/signOut';
 
 type User = {

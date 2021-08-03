@@ -24,7 +24,7 @@ export default function Home() {
       <label htmlFor="email">E-mail:</label>
       <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-      <label htmlFor="password">Senha</label>
+      <label htmlFor="password">Senha:</label>
       <input type="current-password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
       <button type="submit">Entrar</button>

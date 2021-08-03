@@ -5,12 +5,23 @@
 }
 
 body {
+  align-items: center;
   background-color: #37323d;
-  color: rgb(242, 240, 255);
+  color: #f2f0ff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
 }
 
 button {
+  border: 0;
   cursor: pointer;
+  font-size: 16px;
+  margin: 16px auto 0 auto;
+  padding: 8px 0;
+  width: 112px;
 }
 
 a {

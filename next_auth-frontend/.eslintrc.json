@@ -88,6 +88,10 @@
             "./src/errors"
           ],
           [
+            "@nextauth/hooks",
+            "./src/hooks"
+          ],
+          [
             "@nextauth/pages",
             "./src/pages"
           ],

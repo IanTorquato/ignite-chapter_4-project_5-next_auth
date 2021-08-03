@@ -24,6 +24,9 @@
       "@nextauth/contexts/*": [
         "./src/contexts/*"
       ],
+      "@nextauth/errors/*": [
+        "./src/errors/*"
+      ],
       "@nextauth/pages/*": [
         "./src/pages/*"
       ],

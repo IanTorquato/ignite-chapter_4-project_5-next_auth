@@ -2,6 +2,7 @@ import axios, { AxiosError } from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import { parseCookies, setCookie } from 'nookies';
 
+import { AuthTokenError } from '@nextauth/errors/AuthTokenError';
 import { signOut } from '@nextauth/utils/signOut';
 
 let isRefreshing = false;
@@ -78,6 +79,8 @@ export function setupApiClient(ctx: GetServerSidePropsContext = undefined) {
 
         if (process.browser) {
           signOut();
+        } else {
+          return Promise.reject(new AuthTokenError());
         }
       }
 

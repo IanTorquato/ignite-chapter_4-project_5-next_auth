@@ -1,7 +1,10 @@
 import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
-import { parseCookies } from 'nookies';
+import { destroyCookie, parseCookies } from 'nookies';
+
+import { AuthTokenError } from '@nextauth/errors/AuthTokenError';
 
 export function withSSRAuth<P>(fn: GetServerSideProps<P>) {
+  // eslint-disable-next-line consistent-return
   return async (ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<P>> => {
     const cookies = parseCookies(ctx);
 
@@ -14,6 +17,20 @@ export function withSSRAuth<P>(fn: GetServerSideProps<P>) {
       };
     }
 
-    return fn(ctx);
+    try {
+      return fn(ctx);
+    } catch (error) {
+      destroyCookie(ctx, 'nextauth.token');
+      destroyCookie(ctx, 'nextauth.refreshToken');
+
+      if (error instanceof AuthTokenError) {
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false,
+          },
+        };
+      }
+    }
   };
 }

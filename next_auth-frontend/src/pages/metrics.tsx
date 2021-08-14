@@ -2,11 +2,7 @@ import { setupApiClient } from '@nextauth/services/api';
 import { withSSRAuth } from '@nextauth/utils/withSSRAuth';
 
 export default function Metrics() {
-  return (
-    <>
-      <h1>Metrics</h1>
-    </>
-  );
+  return <h1>Metrics</h1>;
 }
 
 export const getServerSideProps = withSSRAuth(
